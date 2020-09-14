@@ -1,40 +1,36 @@
-package com.devsuperior.dspesquisa.entitties;
+package com.devsuperior.dspesquisa.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "tb_record")
-public class Record  implements Serializable{
+@Table(name= "tb_genre")
+public class Genre implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Integer age;
-	private Instant moment;
 	
-	@ManyToOne
-	@JoinColumn(name = "game_id")
-	private Game game;
-
-	public Record() {
+	@OneToMany(mappedBy = "genre")
+	private List<Game> games = new ArrayList<>();
+	
+	public Genre() {
+		
 	}
 
-	public Record(Long id, String name, Integer age, Instant moment, Game game) {
+	public Genre(Long id, String name) {
+		
 		this.id = id;
 		this.name = name;
-		this.age = age;
-		this.moment = moment;
-		this.game = game;
 	}
 
 	public Long getId() {
@@ -52,29 +48,15 @@ public class Record  implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
-	public Integer getAge() {
-		return age;
+	public List<Game> getGames() {
+		return games;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public Instant getMoment() {
-		return moment;
-	}
-
-	public void setMoment(Instant moment) {
-		this.moment = moment;
-	}
-
-	public Game getGame() {
-		return game;
-	}
-
-	public void setGame(Game game) {
-		this.game = game;
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	@Override
@@ -93,7 +75,7 @@ public class Record  implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Record other = (Record) obj;
+		Genre other = (Genre) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -101,6 +83,9 @@ public class Record  implements Serializable{
 			return false;
 		return true;
 	}
+
+	
+	
 	
 	
 	

@@ -1,4 +1,4 @@
-package com.devsuperior.dspesquisa.entitties;
+package com.devsuperior.dspesquisa.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.devsuperior.dspesquisa.entitties.enums.Platform;
+import com.devsuperior.dspesquisa.entities.enums.Platform;
 
 @Entity
 @Table(name= "tb_game")
